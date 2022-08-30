@@ -14,7 +14,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import main_view,signup_view
+from .views import main_view,signup_view, get_leaderboard
 from profiles.views import my_recommendations_view
 from django.contrib.auth import views as auth_views
 
@@ -25,5 +25,6 @@ urlpatterns = [
     path('login/',auth_views.LoginView.as_view(template_name='login.html'), name='login-view'),
     path('logout/',auth_views.LogoutView.as_view(), name='logout-view'),
     path('profiles/',my_recommendations_view,name='my-recs-view'),
-    path('<str:ref_code>/',main_view,name='main-view'),
+    path('leaderboard/', get_leaderboard, name='leaderboard'),
+    path('<str:ref_code>/', main_view, name='main-view'),
 ]

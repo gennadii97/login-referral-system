@@ -8,4 +8,3 @@ from django.dispatch import receiver
 def post_save_create_profile(sender, instance, created, *args, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-        num_points = Profile.objects.filter(recommended_by=sender)
