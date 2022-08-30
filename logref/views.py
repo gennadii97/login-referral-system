@@ -38,7 +38,7 @@ def signup_view(request):
                 recommended_by_profile.distribute_points(num_points)
                 print(f'{recommended_by_profile.accumulated_points=}')
         else:
-            if len(Profile.objects.get(id=profile_id).all()) > MAX_NON_REFERRAL_USERS:
+            if len(Profile.objects.all()) == MAX_NON_REFERRAL_USERS:
                 messages.error(request, 'Limit of non-referrer users exceeded')
                 return render(request, 'signup.html', context)
             form.save()

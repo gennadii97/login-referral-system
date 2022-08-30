@@ -37,7 +37,9 @@ class Profile(models.Model):
             else:
                 self.accumulated_points += 1
                 self.save()
-                return self.distribute_points(num_points - 1)
+                referrer = Profile.objects.get(id=self.recommended_by.id)
+                if referrer:
+                    return referrer.distribute_points(num_points - 1)
 
     def save(self, *args, **kwargs):
         if self.code == "":
