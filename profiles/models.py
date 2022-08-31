@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .utils import generate_ref_code
 
 
-# Create your models here.
+
 
 
 class Profile(models.Model):

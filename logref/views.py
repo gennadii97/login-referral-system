@@ -39,7 +39,7 @@ def signup_view(request):
                 print(f'{recommended_by_profile.accumulated_points=}')
         else:
             if len(Profile.objects.all()) == MAX_NON_REFERRAL_USERS:
-                messages.error(request, 'Limit of non-referrer users exceeded')
+                messages.error(request, 'Limit of non-referrer users exceeded. Ask for referral code')
                 return render(request, 'signup.html', context)
             form.save()
         username = form.cleaned_data.get('username')
@@ -49,7 +49,7 @@ def signup_view(request):
 
         messages.success(request, "Your account has been successfully created. We have sent a confirmation email")
 
-        # Write email
+
         subject = "Welcome to my app!!"
         message = "Hello" + user.username + "!! \n" + "Welcome to app!! \n Thank you for visiting our website \n We have also sent you a confirmation email, please confirm your email address to activate account. \n\n Thank you"
         from_email = settings.EMAIL_HOST_USER
